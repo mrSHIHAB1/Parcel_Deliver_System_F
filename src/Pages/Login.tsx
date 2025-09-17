@@ -11,26 +11,29 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res: any = await loginMutation({ email, password }).unwrap();
-      dispatch(setCredentials({
-        token: res.data.accessToken,
-        refreshToken: res.data.refreshToken,
-        role: res.data.user.role,
-        user: res.data.user,
-      }));
+ const handleLogin = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const res: any = await loginMutation({ email, password }).unwrap();
 
-      // Role-based redirect
-      if (res.data.user.role === "SENDER") navigate("/sender/dashboard");
-      else if (res.data.user.role === "RECIVER") navigate("/receiver/dashboard");
-      else if (res.data.user.role === "ADMIN") navigate("/admin/dashboard");
+    dispatch(setCredentials({
+      token: res.data.accessToken,
+      refreshToken: res.data.refreshToken,
+      role: res.data.user.role,
+      user: res.data.user,
+    }));
 
-    } catch (err) {
-      alert("Login failed");
-    }
-  };
+    // ✅ Role-based redirect
+    const userRole = res.data.user.role;
+    if (userRole === "SENDER") navigate("/sender-dashboard");
+    else if (userRole === "RECEIVER") navigate("/receiver-dashboard");
+    else if (userRole === "ADMIN") navigate("/admin-dashboard");
+
+  } catch (err) {
+    alert("Login failed");
+    console.error(err);
+  }
+};
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
