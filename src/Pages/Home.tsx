@@ -1,7 +1,7 @@
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>Welcome this is our parcel delivery sytem</div>
   )
 }
 
