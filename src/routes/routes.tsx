@@ -1,56 +1,82 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
-import Home from "../Pages/Home";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+
+
 import Main from "../Layout/Main";
 
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
-import ProtectedRoute from "../features/auth/ProtectedRoute";
-import { SenderDashboard } from "../Pages/SenderDashboard";
-import { AdminDashboard } from "../Pages/AdminDashboard";
+import Home from "../Pages/public/Home";
+import Register from "../Pages/auth/Register";
+import Login from "../Pages/auth/Login";
 import Unauthorized from "../Pages/Unauthorized";
-import { ReciverDashboard } from "../Pages/ReciverDashboard";
+
+
+
+
+import ProtectedRoute from "../ProtectedRoutes/ProtectedRoute";
+import SenderLayout from "../Pages/Dashboard/sender/SenderLayout";
+import { SenderDashboard } from "../Pages/Dashboard/sender/SenderDashboard";
+import ReciverLayout from "../Pages/Dashboard/reciver/ReciverLayout";
+import { ReceiverDashboard } from "../Pages/Dashboard/reciver/ReciverDashboard";
+import AdminLayout from "../Pages/Dashboard/admin/AdminLayout";
+import { AdminDashboard } from "../Pages/Dashboard/admin/AdminDashboard";
 
 export const router = createBrowserRouter([
+  // Public routes
   {
     path: "/",
-    element: <Main></Main>,
+    element: <Main />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/unauthorized", element: <Unauthorized /> },
+    ],
+  },
+
+  // Sender routes
+  {
+    element: <ProtectedRoute allowedRoles={["SENDER"]} />,
     children: [
       {
-        path: '/',
-        element: <Home></Home>
-      }
-      ,
-      {
-        path: '/login',
-        element: <Login></Login>
-      },
-      {
-        path: '/register',
-        element: <Register></Register>
-      },
-      {
-        element: <ProtectedRoute allowedRoles={["SENDER"]} />,
+        path: "/sender",
+        element: <SenderLayout />,
         children: [
-          {
-            path: "/sender-dashboard",
-            element: <SenderDashboard />
-          }
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: "dashboard", element: <SenderDashboard /> },
+
         ],
       },
-      {
-        element: <ProtectedRoute allowedRoles={["RECEIVER"]} />,
-        children: [{ path: "/receiver-dashboard", element: <ReciverDashboard /> }],
-      },
-      {
-        element: <ProtectedRoute allowedRoles={["ADMIN"]} />,
-        children: [{ path: "/admin-dashboard", element: <AdminDashboard /> }],
-      },
+    ],
+  },
 
+  // Receiver routes
+  {
+    element: <ProtectedRoute allowedRoles={["RECEIVER"]} />,
+    children: [
       {
-        path: "/unauthorized", element: <Unauthorized></Unauthorized>
+        path: "/receiver",
+        element: <ReciverLayout />,
+        children: [
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: "dashboard", element: <ReceiverDashboard /> },
+       
+        ],
       },
-    ]
-  }
+    ],
+  },
+
+  // Admin routes
+  {
+    element: <ProtectedRoute allowedRoles={["ADMIN"]} />,
+    children: [
+      {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: "dashboard", element: <AdminDashboard /> },
+       
+        ],
+      },
+    ],
+  },
 ]);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRegisterMutation } from "../features/auth/authApi";
+import { useRegisterMutation } from "../../features/auth/authApi";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
@@ -15,7 +15,8 @@ export default function Register() {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await registerMutation({ name, email, password, phone, address, role }).unwrap();
+      console.log(name,email,password,phone,address,role)
+      await registerMutation({ name,email,password,phone,address,  role }).unwrap();
       navigate("/login");
     } catch {
       alert("Registration failed");

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ReciverDashboard = () => {
+export const ReceiverDashboard= () => {
   return (
     <div>ReciverDashboard</div>
   )

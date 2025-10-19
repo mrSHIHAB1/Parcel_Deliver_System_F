@@ -7,7 +7,7 @@ interface AuthState {
   user: any | null;
 }
 
-// Load from localStorage
+
 const initialState: AuthState = {
   token: localStorage.getItem("accessToken"),
   refreshToken: localStorage.getItem("refreshToken"),
@@ -33,7 +33,7 @@ const authSlice = createSlice({
       state.role = action.payload.role;
       state.user = action.payload.user;
 
-      // ✅ persist everything
+      
       localStorage.setItem("accessToken", action.payload.token);
       localStorage.setItem("refreshToken", action.payload.refreshToken);
       localStorage.setItem("role", action.payload.role || "");
@@ -45,7 +45,6 @@ const authSlice = createSlice({
       state.role = null;
       state.user = null;
 
-      // ✅ clear everything
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("role");
