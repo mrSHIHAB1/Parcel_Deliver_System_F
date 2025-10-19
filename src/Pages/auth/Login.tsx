@@ -27,8 +27,8 @@ export default function Login() {
 
    
     const userRole = res.data.user.role;
-    if (userRole === "SENDER") navigate("/sender-dashboard");
-    else if (userRole === "RECEIVER") navigate("/receiver-dashboard");
+    if (userRole === "SENDER") navigate("/sender");
+    else if (userRole === "RECEIVER") navigate("/receiver");
     else if (userRole === "ADMIN") navigate("/admin");
 
   } catch (err) {

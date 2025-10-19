@@ -18,6 +18,10 @@ import ReciverLayout from "../Pages/Dashboard/reciver/ReciverLayout";
 import { ReceiverDashboard } from "../Pages/Dashboard/reciver/ReciverDashboard";
 import AdminLayout from "../Pages/Dashboard/admin/AdminLayout";
 import { AdminDashboard } from "../Pages/Dashboard/admin/AdminDashboard";
+import CreateParcel from "../Pages/Dashboard/sender/CreateParcel";
+import ViewParcels from "../Pages/Dashboard/sender/ViewParcels";
+import AdminUsers from "../Pages/Dashboard/admin/Users";
+import AdminParcels from "../Pages/Dashboard/admin/Parcels";
 
 export const router = createBrowserRouter([
   // Public routes
@@ -42,7 +46,9 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <Navigate to="dashboard" replace /> },
           { path: "dashboard", element: <SenderDashboard /> },
-
+          { path: "create", element: <CreateParcel/> },
+          { path: "viewall", element: <ViewParcels/> },
+          
         ],
       },
     ],
@@ -74,6 +80,8 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <Navigate to="dashboard" replace /> },
           { path: "dashboard", element: <AdminDashboard /> },
+          { path: "users", element: <AdminUsers/>},
+          { path: "parcels", element: <AdminParcels/> },
        
         ],
       },
