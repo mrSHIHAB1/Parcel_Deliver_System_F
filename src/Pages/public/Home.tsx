@@ -1,7 +1,10 @@
+import ParcelTrackingPage from "../Tracking/Tracking"
 
 function Home() {
   return (
-    <div>Welcome this is our parcel delivery sytem</div>
+    <div>
+      <ParcelTrackingPage></ParcelTrackingPage>
+    </div>
   )
 }
 

@@ -1,23 +1,22 @@
 import { useGetAllUsersQuery, useUpdateUserStatusMutation } from "../../../features/parcel/adminApi";
 
 const AdminUsers = () => {
-  const { data: users = [], isLoading } = useGetAllUsersQuery();
+  const { data, isLoading } = useGetAllUsersQuery();
   const [updateUserStatus] = useUpdateUserStatusMutation();
 
   if (isLoading) return <p>Loading users...</p>;
 
-const handleToggleBlock = async (id: string, isBlocked: boolean) => {
-  const payload = { id, isblocked: !isBlocked };
-  console.log("Payload sending to API:", payload); // ✅ see what is sent
-  try {
-    const res = await updateUserStatus(payload).unwrap();
-    console.log("API response:", res); // ✅ see what API returns
-    alert(`User ${!isBlocked ? "Blocked" : "Unblocked"} successfully`);
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update status");
-  }
-};
+  const handleToggleBlock = async (id: string, isBlocked: boolean) => {
+    const payload = { id, isblocked: !isBlocked };
+
+    try {
+      const res = await updateUserStatus(payload).unwrap();
+
+      alert(`User ${!isBlocked ? "Blocked" : "Unblocked"} successfully`);
+    } catch (err) {
+      alert("Failed to update status");
+    }
+  };
 
 
   return (
@@ -33,7 +32,7 @@ const handleToggleBlock = async (id: string, isBlocked: boolean) => {
           </tr>
         </thead>
         <tbody>
-          {users.data.map((u: any) => (
+          {data?.data.map((u: any) => (
             <tr key={u._id} className="border-t text-center">
               <td>{u.name}</td>
               <td>{u.email}</td>
@@ -41,9 +40,8 @@ const handleToggleBlock = async (id: string, isBlocked: boolean) => {
               <td>
                 <button
                   onClick={() => handleToggleBlock(u._id, u.isblocked)}
-                  className={`px-3 py-1 rounded ${
-                    u.isblocked ? "bg-green-500" : "bg-red-500"
-                  } text-white`}
+                  className={`px-3 py-1 rounded ${u.isblocked ? "bg-green-500" : "bg-red-500"
+                    } text-white`}
                 >
                   {u.isblocked ? "Unblock" : "Block"}
                 </button>

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "../../app/store";
-import type { Parcel } from "../../Pages/Dashboard/sender/parceltypes";
+import type { Parcel } from "./apiTypes";
+
 
 export const parcelApi = createApi({
   reducerPath: "parcelApi",
@@ -40,7 +41,36 @@ export const parcelApi = createApi({
       query: () => "/getParcel",
       providesTags: ["Parcel"],
     }),
+
+    getReceiverParcels: builder.query<{ data: Parcel[] }, void>({
+      query: () => "/reciverParcels",
+      providesTags: ["Parcel"],
+    }),
+
+    confirmReceiverParcel: builder.mutation<any, { id: string }>({
+      query: ({ id }) => ({
+        url: `/reciverConfirm/${id}`,
+        method: "PATCH",
+        body: { reciverConfiramtion: "Confirmed" },
+      }),
+      invalidatesTags: ["Parcel"],
+    }),
+
+    getReceiverHistory: builder.query<{ data: Parcel[] }, void>({
+      query: () => "/getreciverhistory",
+      providesTags: ["Parcel"],
+    }),
+      getTrackingEvents: builder.query<any, string>({
+      query: (trackingId) => `/tracking-events/${trackingId}`,
+      providesTags: ["Parcel"],
+    }),
   }),
 });
 
-export const { useCreateParcelMutation, useCancelParcelMutation, useGetParcelsQuery } = parcelApi;
+export const { useCreateParcelMutation, 
+  useCancelParcelMutation, 
+  useGetParcelsQuery,  
+  useGetReceiverParcelsQuery ,
+  useGetReceiverHistoryQuery,
+  useConfirmReceiverParcelMutation  , 
+  useGetTrackingEventsQuery,} = parcelApi;

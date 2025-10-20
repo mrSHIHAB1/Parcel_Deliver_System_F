@@ -22,6 +22,11 @@ import CreateParcel from "../Pages/Dashboard/sender/CreateParcel";
 import ViewParcels from "../Pages/Dashboard/sender/ViewParcels";
 import AdminUsers from "../Pages/Dashboard/admin/Users";
 import AdminParcels from "../Pages/Dashboard/admin/Parcels";
+import ParcelDetails from "../Pages/Dashboard/admin/ParcelDetails";
+
+import ViewIncoming from "../Pages/Dashboard/reciver/ViewIncoming";
+import ReceiverParcelDetails from "../Pages/Dashboard/reciver/ReciverParcelDetails";
+import DeliveryHistory from "../Pages/Dashboard/reciver/DeliveryHistory";
 
 export const router = createBrowserRouter([
   // Public routes
@@ -30,6 +35,7 @@ export const router = createBrowserRouter([
     element: <Main />,
     children: [
       { path: "/", element: <Home /> },
+     
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/unauthorized", element: <Unauthorized /> },
@@ -56,17 +62,16 @@ export const router = createBrowserRouter([
 
   // Receiver routes
   {
-    element: <ProtectedRoute allowedRoles={["RECEIVER"]} />,
+    element: <ProtectedRoute allowedRoles={["RECIVER"]} />,
     children: [
-      {
-        path: "/receiver",
-        element: <ReciverLayout />,
-        children: [
-          { index: true, element: <Navigate to="dashboard" replace /> },
-          { path: "dashboard", element: <ReceiverDashboard /> },
-       
-        ],
-      },
+    { path: "/receiver", element: <ReciverLayout />, children: [
+    { index: true, element: <Navigate to="dashboard" replace /> },
+    { path: "dashboard", element: <ReceiverDashboard /> },
+    { path: "incoming", element: <ViewIncoming/> }, 
+    { path: "parcels/:id", element: <ReceiverParcelDetails/>}, 
+    { path: "delivery", element: <DeliveryHistory></DeliveryHistory>}, 
+]}
+
     ],
   },
 
@@ -82,6 +87,7 @@ export const router = createBrowserRouter([
           { path: "dashboard", element: <AdminDashboard /> },
           { path: "users", element: <AdminUsers/>},
           { path: "parcels", element: <AdminParcels/> },
+          { path: "parcels/:id", element: <ParcelDetails/> },
        
         ],
       },

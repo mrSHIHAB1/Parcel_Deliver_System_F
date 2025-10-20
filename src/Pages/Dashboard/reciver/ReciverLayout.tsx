@@ -1,25 +1,34 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
+import { logout } from "../../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function ReciverLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const links = [
-    { name: "View Incoming", path: "/reciver/dashboard" },
-    { name: "Confirm parcel", path: "/reciver/users" },
-    { name: "view delivery", path: "/reciver/parcels" },
+    { name: "Dashboard", path: "/receiver/dashboard" },
+    { name: "View Incoming", path: "/receiver/incoming" },
+    { name: "View Delivery", path: "/receiver/delivery" },
   ];
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
- 
+      {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-full w-64 bg-gray-100 dark:bg-gray-800 p-4 flex flex-col gap-4 transition-transform duration-300
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 z-50`}
       >
-       
+        {/* Mobile close button */}
         <div className="flex justify-end md:hidden mb-4">
           <button
             onClick={() => setSidebarOpen(false)}
@@ -29,13 +38,14 @@ export default function ReciverLayout() {
           </button>
         </div>
 
-        <h2 className="text-xl font-bold mb-6 dark:text-white">Admin Panel</h2>
+        <h2 className="text-xl font-bold mb-6 dark:text-white">Receiver Panel</h2>
 
+        {/* Links */}
         {links.map((link) => (
           <Link
             key={link.path}
             to={link.path}
-            onClick={() => setSidebarOpen(false)} 
+            onClick={() => setSidebarOpen(false)}
             className={`px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
               location.pathname === link.path
                 ? "bg-gray-300 dark:bg-gray-700 font-bold"
@@ -45,19 +55,30 @@ export default function ReciverLayout() {
             {link.name}
           </Link>
         ))}
+
+        {/* Logout button */}
+        <div className="mt-auto">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center px-4 py-2 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors text-red-600 dark:text-red-400 font-semibold mt-4"
+          >
+            <LogOut className="w-5 h-5 mr-2" />
+            Logout
+          </button>
+        </div>
       </aside>
 
-      
+      {/* Overlay for mobile sidebar */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 backdrop-blur-xs  bg-opacity-30 z-40 md:hidden"
+          className="fixed inset-0 backdrop-blur-xs bg-black/20 z-40 md:hidden"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
 
-   
+      {/* Main content */}
       <div className="flex-1 md:ml-64 flex flex-col min-h-screen">
-       
+        {/* Mobile header */}
         <header className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-md md:hidden">
           <button
             onClick={() => setSidebarOpen(!isSidebarOpen)}
@@ -65,10 +86,9 @@ export default function ReciverLayout() {
           >
             {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <h1 className="text-lg font-bold dark:text-white">Admin Panel</h1>
+          <h1 className="text-lg font-bold dark:text-white">Receiver Panel</h1>
         </header>
 
-       
         <main className="p-6">
           <Outlet />
         </main>

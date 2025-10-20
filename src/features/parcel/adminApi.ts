@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "../../app/store";
+import type { GetAllParcelsResponse, GetAllUsersResponse } from "./apiTypes";
 
 export const adminApi = createApi({
   reducerPath: "adminApi",
@@ -15,30 +16,30 @@ export const adminApi = createApi({
   }),
   tagTypes: ["User", "Parcel"],
   endpoints: (builder) => ({
-    // 1️⃣ View all users
-    getAllUsers: builder.query<any[], void>({
+  
+    getAllUsers: builder.query<GetAllUsersResponse, void>({
       query: () => "/user/all-users",
       providesTags: ["User"],
     }),
 
-    // 2️⃣ View all parcels
-    getAllParcels: builder.query<any[], void>({
+ 
+    getAllParcels: builder.query<GetAllParcelsResponse, void>({
       query: () => "/parcel/allparcel",
       providesTags: ["Parcel"],
     }),
+    
 
-    // 3️⃣ Block/Unblock user
+   
 updateUserStatus: builder.mutation<any, { id: string; isblocked: boolean }>({
   query: ({ id, isblocked }) => ({
     url: `/user/updateUsers/${id}`,
     method: "PATCH",
-    body: { isblocked }, // ✅ lowercase
+    body: { isblocked }, 
   }),
   invalidatesTags: ["User"],
 }),
 
 
-    // 4️⃣ Block/Unblock parcel
     updateParcelBlock: builder.mutation<any, { id: string; isBlocked: boolean }>({
       query: ({ id, isBlocked }) => ({
         url: `/parcel/updateParcel/${id}`,
@@ -48,7 +49,7 @@ updateUserStatus: builder.mutation<any, { id: string; isblocked: boolean }>({
       invalidatesTags: ["Parcel"],
     }),
 
-    // 5️⃣ Update delivery status
+  
     updateParcelStatus: builder.mutation({
       query: ({ id, newStatus, location, note }) => ({
         url: `parcel/update-status/${id}`,

@@ -6,17 +6,26 @@ import { logout } from "../features/auth/authSlice";
 import { useTheme } from "../hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 
-
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token, role } = useSelector((state: RootState) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
   };
+
+  // Determine dashboard path based on role
+  const dashboardPath =
+    role === "SENDER"
+      ? "/sender"
+      : role === "RECIVER"
+      ? "/receiver"
+      : role === "ADMIN"
+      ? "/admin"
+      : "/";
 
   return (
     <div>
@@ -41,6 +50,7 @@ function Navbar() {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              {token && <li><Link to={dashboardPath}>Dashboard</Link></li>}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">Parcel Delivery System</a>
@@ -51,26 +61,25 @@ function Navbar() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/contact">Contact</Link></li>
+            {token && <li><Link to={dashboardPath}>Dashboard</Link></li>}
           </ul>
         </div>
 
-        <div className="navbar-end">
-        <div>
-         <button
-      onClick={toggleTheme}
-      className="p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-      aria-label="Toggle theme"
-    >
-      {theme === "dark" ? (
-        <Sun className="w-5 h-5 text-yellow-400" />
-      ) : (
-        <Moon className="w-5 h-5 text-gray-800" />
-      )}
-    </button>
-        </div>
+        <div className="navbar-end flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-5 h-5 text-yellow-400" />
+            ) : (
+              <Moon className="w-5 h-5 text-gray-800" />
+            )}
+          </button>
           {!token ? (
             <Link to="/login">
-              <button className="btn  ">Login</button>
+              <button className="btn">Login</button>
             </Link>
           ) : (
             <button className="btn" onClick={handleLogout}>Logout</button>
