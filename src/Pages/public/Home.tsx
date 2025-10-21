@@ -1,8 +1,9 @@
-import ParcelTrackingPage from "../auth/Register"
+import ParcelTrackingPage from "../Tracking/Tracking"
 
 function Home() {
   return (
     <div>
+    
       <ParcelTrackingPage></ParcelTrackingPage>
     </div>
   )
