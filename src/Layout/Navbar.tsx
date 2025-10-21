@@ -51,7 +51,7 @@ function Navbar() {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/track">Contact</Link></li>
+              <li><Link to="/track">Track</Link></li>
               {token && <li><Link to={dashboardPath}>Dashboard</Link></li>}
             </ul>
           </div>

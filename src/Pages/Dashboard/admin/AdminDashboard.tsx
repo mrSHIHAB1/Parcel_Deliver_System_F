@@ -3,7 +3,7 @@ import OverviewCard from '../../../components/DataVisualization/OverviewCard';
 import { useGetAllParcelsQuery } from '../../../features/parcel/adminApi';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { useMemo } from "react";
-
+import Truck from "../../../assets/Truck.svg"
 export const AdminDashboard = () => {
   const { data, isLoading, isError } = useGetAllParcelsQuery();
 
@@ -43,6 +43,12 @@ export const AdminDashboard = () => {
 
   return (
     <div>
+      <div className="flex pb-5 justify-between">
+    <div>
+      <div className="flex font-bold items-center justify-center space-x-2"><img src={Truck} className="w-10"></img><p>Admin Dashboard</p></div>
+    </div>
+     
+  </div>
       {/* Overview Cards */}
       <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
         <OverviewCard title="Total Parcels" value={totalParcels} color="bg-indigo-500" />
