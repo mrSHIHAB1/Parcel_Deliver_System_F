@@ -57,7 +57,14 @@ const AdminParcelsTable = () => {
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
   const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
-  if (isLoading) return <p className="text-center py-10">Loading parcels...</p>;
+    if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
+
+ 
 
   return (
     <div className="p-6">

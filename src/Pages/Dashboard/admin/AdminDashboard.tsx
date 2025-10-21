@@ -38,8 +38,16 @@ export const AdminDashboard = () => {
 
   const COLORS = ["#4CAF50", "#2196F3", "#FFC107", "#F44336"];
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error fetching parcels</p>;
+   if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
+
+  if (isError)
+    return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
+
 
   return (
     <div>

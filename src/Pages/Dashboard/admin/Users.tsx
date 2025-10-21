@@ -106,18 +106,14 @@ const AdminUsers = () => {
                     <td className="px-4 py-3">{u.email}</td>
                     <td className="px-4 py-3 text-center">
                       <span
-                        className={`px-2 py-1 rounded-full text-white font-semibold text-sm ${
-                          u.role === "ADMIN" ? "bg-blue-500" : "bg-teal-500"
-                        }`}
+                        className={`px-2 py-1 rounded-full text-black font-semibold text-sm `}
                       >
                         {u.role}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center">
                       <span
-                        className={`px-2 py-1 rounded-full text-white font-semibold text-sm ${
-                          u.isblocked ? "bg-red-500" : "bg-green-500"
-                        }`}
+                        className={`px-2 py-1 rounded-full text-black font-semibold text-sm `}
                       >
                         {u.isblocked ? "Blocked" : "Active"}
                       </span>
@@ -150,9 +146,7 @@ const AdminUsers = () => {
                 <div className="flex justify-between items-center">
                   <h3 className="font-bold text-gray-800 dark:text-white">{u.name}</h3>
                   <span
-                    className={`px-2 py-1 rounded-full text-white font-semibold text-sm ${
-                      u.role === "ADMIN" ? "bg-blue-500" : "bg-teal-500"
-                    }`}
+                    className={`px-2 py-1 rounded-full text-black font-semibold text-sm `}
                   >
                     {u.role}
                   </span>
@@ -160,9 +154,7 @@ const AdminUsers = () => {
                 <p className="text-gray-700 dark:text-gray-300">{u.email}</p>
                 <div className="flex justify-between items-center">
                   <span
-                    className={`px-2 py-1 rounded-full text-white font-semibold text-sm ${
-                      u.isblocked ? "bg-red-500" : "bg-green-500"
-                    }`}
+                    className={`px-2 py-1 rounded-full text-black font-semibold text-sm `}
                   >
                     {u.isblocked ? "Blocked" : "Active"}
                   </span>

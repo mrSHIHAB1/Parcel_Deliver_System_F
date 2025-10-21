@@ -32,18 +32,16 @@ export default function ViewParcels() {
     setCurrentPage(page);
   };
 
-  if (isLoading)
+    if (isLoading)
     return (
       <div className="flex justify-center items-center h-64">
         <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
       </div>
     );
+
   if (isError)
-    return (
-      <div className="text-red-500 text-center py-10">
-        Failed to fetch parcels.
-      </div>
-    );
+    return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
+
 
   return (
     <div className="space-y-6">

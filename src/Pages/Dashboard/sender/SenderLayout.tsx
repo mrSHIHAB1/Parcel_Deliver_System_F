@@ -19,6 +19,7 @@ export default function SenderLayout() {
     { name: "Dashboard", path: "/sender/dashboard" },
     { name: "Create Request", path: "/sender/create" },
     { name: "View All Parcels", path: "/sender/viewall" },
+    { name: "Tracking", path: "/sender/track" },
   ];
 
   const handleLogout = () => {

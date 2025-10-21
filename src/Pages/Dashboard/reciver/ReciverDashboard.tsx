@@ -2,6 +2,7 @@ import  { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetReceiverHistoryQuery } from "../../../features/parcel/parcelApi"; // adjust path
 import OverviewCard from "../../../components/DataVisualization/OverviewCard";
+import Truck from "../../../assets/Truck.svg"
 
 export  function ReceiverDashboard() {
    const { data, isLoading, isError } = useGetReceiverHistoryQuery();
@@ -33,7 +34,9 @@ export  function ReceiverDashboard() {
   if (isError) return <p>Error fetching parcels.</p>;
   return (
     <div className="p-6">
-     
+     <div>
+      <div className="flex font-bold items-center justify-start space-x-2 pb-10"><img src={Truck} className="w-10"></img><p>Reciver Dashboard </p></div>
+    </div>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
         <OverviewCard title="Total Parcels" value={totalParcels} color="bg-indigo-500" />
         <OverviewCard title="Delivered" value={delivered} color="bg-green-500" />
@@ -78,7 +81,7 @@ export  function ReceiverDashboard() {
                 <th className="px-4 py-2 text-left">Type</th>
                 <th className="px-4 py-2 text-left">Expected Delivery</th>
                 <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Actions</th>
+            
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -90,19 +93,7 @@ export  function ReceiverDashboard() {
                   <td className="px-4 py-2">{new Date(p.expectedDelivery).toLocaleDateString()}</td>
                   <td className="px-4 py-2">{p.status}</td>
                   <td className="px-4 py-2 space-x-2">
-                    <button
-                      onClick={() => navigate(`/receiver/parcels/${p.id}`)}
-                      className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                    >
-                      View Details
-                    </button>
                    
-                    <button
-                      onClick={() => alert("Report issue clicked")}
-                      className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
-                    >
-                      Report Issue
-                    </button>
                   </td>
                 </tr>
               ))}

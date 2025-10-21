@@ -203,7 +203,9 @@ export default function CreateParcel() {
         disabled={isLoading}
         className="mt-6 w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-lg transition-colors duration-300"
       >
-        {isLoading ? "Creating..." : "Create Parcel"}
+        {isLoading ? <><div className="flex justify-center items-center h-64">
+        <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
+      </div></>: "Create Parcel"}
       </button>
     </form>
   );

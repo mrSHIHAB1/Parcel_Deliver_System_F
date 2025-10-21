@@ -57,55 +57,25 @@ export const SenderDashboard = () => {
 
   const COLORS = ["#4CAF50", "#2196F3", "#FFC107", "#F44336"];
 
-  if (isLoading) {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-teal-500"></div>
-    </div>
-  );
-}
+   if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
 
-if (isError) {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-red-500">
-      <svg
-        className="animate-bounce w-12 h-12 mb-4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 8v4m0 4h.01M12 2a10 10 0 1 1-10 10A10 10 0 0 1 12 2z"
-        />
-      </svg>
-      <p className="text-lg font-semibold">Failed to load parcels. Please try again.</p>
-    </div>
-  );
-}
+  if (isError)
+    return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
 
 
   return (
     <div className="p-6 pt-0 ">
       {/* ---------------- Search Bar ---------------- */}
   <div className="flex pb-5 justify-between">
-    <div>
-      <div className=""><img src={Truck} className="w-10"></img><p></p></div>
+    <div className="">
+      <div className="flex justify-center items-center space-x-3 font-semibold"><img src={Truck} className="w-10"></img><p>Sender Dashboard</p></div>
     </div>
-       <div className="mb-6 flex items-center w-full max-w-md">
-        <div className="relative w-full">
-          <input
-            type="text"
-            placeholder="Search by receiver phone..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full border rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-teal-400"
-          />
-          <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
-        </div>
-      </div>
+       
   </div>
 
       {/* ---------------- Overview Cards ---------------- */}
@@ -156,7 +126,18 @@ if (isError) {
           </ResponsiveContainer>
         </div>
       </div>
-
+<div className="mb-6 flex items-center w-full max-w-md">
+        <div className="relative w-full">
+          <input
+            type="text"
+            placeholder="Search by receiver phone..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full border rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          />
+          <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+        </div>
+      </div>
       {/* ---------------- Parcel Table ---------------- */}
       <div className="bg-white rounded-2xl shadow p-4">
         <h2 className="text-lg font-semibold mb-4">Your Parcels</h2>

@@ -58,6 +58,7 @@ export const router = createBrowserRouter([
           { path: "create", element: <CreateParcel/> },
           { path: "viewall", element: <ViewParcels/> },
           { path: "parcels/:id", element: <SenderParcelDetails/> },
+          { path: "/sender/track", element: <ParcelTrackingPage/> },
           
         ],
       },
@@ -74,6 +75,7 @@ export const router = createBrowserRouter([
     { path: "incoming", element: <ViewIncoming/> }, 
     { path: "parcels/:id", element: <ReceiverParcelDetails/>}, 
     { path: "delivery", element: <DeliveryHistory></DeliveryHistory>}, 
+    { path: "/receiver/track", element: <ParcelTrackingPage/>}, 
 ]}
 
     ],
@@ -92,6 +94,7 @@ export const router = createBrowserRouter([
           { path: "users", element: <AdminUsers/>},
           { path: "parcels", element: <AdminParcels/> },
           { path: "parcels/:id", element: <ParcelDetails/> },
+            { path: "/admin/track", element: <ParcelTrackingPage/>}, 
        
         ],
       },

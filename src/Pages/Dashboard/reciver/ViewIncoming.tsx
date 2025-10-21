@@ -5,7 +5,7 @@ const ViewIncoming = () => {
   const { data, isLoading, isError } = useGetReceiverParcelsQuery();
   const navigate = useNavigate();
 
-  if (isLoading)
+   if (isLoading)
     return (
       <div className="flex justify-center items-center h-64">
         <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
@@ -14,6 +14,7 @@ const ViewIncoming = () => {
 
   if (isError)
     return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
+
 
   if (!data || data.data.length === 0)
     return <p className="text-center mt-10 text-gray-600">No incoming parcels found.</p>;
@@ -33,7 +34,7 @@ const ViewIncoming = () => {
               <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Sender</th>
               <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Parcel Name</th>
               <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Status</th>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Date</th>
+              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Requested Date</th>
             </tr>
           </thead>
           <tbody>
@@ -44,8 +45,8 @@ const ViewIncoming = () => {
                 className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
               >
                 <td className="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{index + 1}</td>
-                <td className="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{parcel.senderName}</td>
-                <td className="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{parcel.parcelName}</td>
+                <td className="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{parcel.sender}</td>
+                <td className="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">{parcel.type}</td>
                 <td className="px-4 py-2 text-sm">
                   <span
                     className={`px-2 py-1 rounded-full text-xs font-semibold ${
@@ -87,7 +88,7 @@ const ViewIncoming = () => {
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-1">
-              <strong>Sender:</strong> {parcel.senderName}
+              <strong>Sender:</strong> {parcel.sender}
             </p>
             <p className="text-gray-600 dark:text-gray-300">
               <strong>Date:</strong> {new Date(parcel.createdAt).toLocaleDateString()}
