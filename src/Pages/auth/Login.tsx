@@ -27,7 +27,7 @@ export default function Login() {
       );
 
       const userRole = res.data.user.role;
-      toast.success("Login successful!", { duration: 2000 });
+      toast.success("Login successful!");
 
       if (userRole === "SENDER") navigate("/sender");
       else if (userRole === "RECIVER") navigate("/receiver");
@@ -39,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen  p-4">
+    <div className="flex justify-center items-center min-h-screen dark:bg-gray-900 p-4">
       <form
         onSubmit={handleLogin}
         className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md"

@@ -128,7 +128,7 @@ const AdminParcelsTable = () => {
               <th className="px-4 py-3 text-center">Logs</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-600 dark:text-white">
             {currentParcels.map((parcel) => (
               <tr
                 key={parcel._id}

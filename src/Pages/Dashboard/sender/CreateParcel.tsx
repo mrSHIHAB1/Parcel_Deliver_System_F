@@ -80,7 +80,7 @@ export default function CreateParcel() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-5xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg"
+      className="max-w-5xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg dark:text-white"
     >
       <h2 className="text-2xl font-bold mb-6 text-center dark:text-white">Create Parcel</h2>
 

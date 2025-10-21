@@ -16,8 +16,8 @@ const ParcelTrackingPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-bold mb-4 text-center">
+    <div className="max-w-4xl mx-auto p-6 space-y-6 ">
+      <h1 className="text-2xl font-bold mb-4 text-center dark:text-white">
         Track Your Parcel
       </h1>
 
@@ -28,7 +28,7 @@ const ParcelTrackingPage = () => {
           value={trackingId}
           onChange={(e) => setTrackingId(e.target.value)}
           placeholder="Enter Tracking ID (e.g., TRK-20251020-000001)"
-          className="flex-1 border rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          className="flex-1 border rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400 dark:border-white dark:text-white"
         />
         <button
           type="submit"

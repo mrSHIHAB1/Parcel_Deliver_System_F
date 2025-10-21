@@ -84,7 +84,7 @@ const AdminUsers = () => {
 
           {/* Table for md+ */}
           <div className="hidden md:block overflow-x-auto rounded-lg shadow-md">
-            <table className="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600">
+            <table className="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600 dark:text-white">
               <thead className="bg-gray-100 dark:bg-gray-700">
                 <tr>
                   <th className="px-4 py-2 text-left">Name</th>
@@ -106,14 +106,14 @@ const AdminUsers = () => {
                     <td className="px-4 py-3">{u.email}</td>
                     <td className="px-4 py-3 text-center">
                       <span
-                        className={`px-2 py-1 rounded-full text-black font-semibold text-sm `}
+                        className={`px-2 py-1 rounded-full text-black font-semibold text-sm dark:text-white`}
                       >
                         {u.role}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center">
                       <span
-                        className={`px-2 py-1 rounded-full text-black font-semibold text-sm `}
+                        className={`px-2 py-1 rounded-full text-black font-semibold text-sm dark:text-white`}
                       >
                         {u.isblocked ? "Blocked" : "Active"}
                       </span>

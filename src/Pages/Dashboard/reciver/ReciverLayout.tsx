@@ -103,7 +103,7 @@ export default function ReciverLayout() {
           >
             {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <h1 className="text-lg font-bold dark:text-white">Sender Panel</h1>
+         
         </header>
 
         <main className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
