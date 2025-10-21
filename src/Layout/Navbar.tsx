@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { type RootState } from "../app/store";
 import { logout } from "../features/auth/authSlice";
-
+import Truck from "../assets/Truck.svg"
 import { useTheme } from "../hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 
@@ -29,7 +29,8 @@ function Navbar() {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm ">
+     <div className="navbar bg-base-100 dark:bg-neutral text-black dark:text-white shadow-sm">
+ 
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -50,10 +51,11 @@ function Navbar() {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/track">Contact</Link></li>
               {token && <li><Link to={dashboardPath}>Dashboard</Link></li>}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Parcel Delivery System</a>
+          <a className="btn btn-ghost text-xl"><img src={Truck} className="w-10"></img>ShipZone</a>
         </div>
 
         <div className="navbar-center hidden lg:flex">
@@ -66,6 +68,7 @@ function Navbar() {
         </div>
 
         <div className="navbar-end flex items-center gap-2">
+          <Link to='/track'><div className="btn hidden md:flex"><p>Track Parcel</p></div></Link>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -78,9 +81,15 @@ function Navbar() {
             )}
           </button>
           {!token ? (
+            <>
             <Link to="/login">
               <button className="btn">Login</button>
             </Link>
+            <Link to="/register">
+              <button className="btn bg-[#039396de] text-white">Register</button>
+            </Link>
+            
+            </>
           ) : (
             <button className="btn" onClick={handleLogout}>Logout</button>
           )}

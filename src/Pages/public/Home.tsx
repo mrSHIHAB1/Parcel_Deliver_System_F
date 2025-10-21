@@ -1,4 +1,4 @@
-import ParcelTrackingPage from "../Tracking/Tracking"
+import ParcelTrackingPage from "../auth/Register"
 
 function Home() {
   return (

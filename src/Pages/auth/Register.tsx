@@ -36,7 +36,7 @@ export default function Register() {
           <option value="SENDER">Sender</option>
           <option value="RECIVER">Receiver</option>
         </select>
-        <button className="bg-green-500 text-white w-full py-2 rounded">Register</button>
+        <button className="bg-[#039396de] text-white w-full py-2 rounded">Register</button>
       </form>
     </div>
   );

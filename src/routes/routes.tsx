@@ -28,6 +28,7 @@ import ViewIncoming from "../Pages/Dashboard/reciver/ViewIncoming";
 import ReceiverParcelDetails from "../Pages/Dashboard/reciver/ReciverParcelDetails";
 import DeliveryHistory from "../Pages/Dashboard/reciver/DeliveryHistory";
 import SenderParcelDetails from "../Pages/Dashboard/sender/ParcelDetails";
+import ParcelTrackingPage from "../Pages/Tracking/Tracking";
 
 export const router = createBrowserRouter([
   // Public routes
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/unauthorized", element: <Unauthorized /> },
+      { path: "/track", element: <ParcelTrackingPage/> },
     ],
   },
 

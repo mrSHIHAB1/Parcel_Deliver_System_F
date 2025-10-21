@@ -6,9 +6,9 @@ const ParcelTrackingPage = () => {
   const [trackingId, setTrackingId] = useState("");
   const [searchId, setSearchId] = useState("");
 
-  // Only fetch when searchId changes
+ 
   const { data, isLoading, isError } = useGetTrackingEventsQuery(searchId, {
-    skip: !searchId, // skip fetching if searchId is empty
+    skip: !searchId, 
   });
 
   const handleSearch = (e: React.FormEvent) => {
@@ -18,7 +18,7 @@ const ParcelTrackingPage = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Parcel Tracking</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Track Your Parcel Here</h1>
 
       <form onSubmit={handleSearch} className="flex mb-6">
         <input
@@ -30,7 +30,7 @@ const ParcelTrackingPage = () => {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600"
+          className="bg-[#039396de] text-white px-4 py-2 rounded-r hover:bg-[#039396f8]"
         >
           Search
         </button>

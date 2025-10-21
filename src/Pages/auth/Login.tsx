@@ -39,14 +39,14 @@ export default function Login() {
 };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100 ">
+    <div className="flex justify-center items-center h-screen bg-gray-100 dark:bg-[#13161b] ">
       <form onSubmit={handleLogin} className="bg-white p-6 rounded shadow-md w-96">
         <h2 className="text-xl font-bold mb-4">Login</h2>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
           placeholder="Email" className="border w-full p-2 mb-2"/>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
           placeholder="Password" className="border w-full p-2 mb-2"/>
-        <button className="bg-blue-500 text-white w-full py-2 rounded dark:bg-black px-4  dark:text-white">Login</button>
+        <button className="bg-[#039396de] text-white w-full py-2 rounded dark:bg-black px-4  dark:text-white">Login</button>
         <p className="text-center">or</p>
         <div className="text-center">
             <Link to={"/register"}><button className="btn w-full">Register</button></Link>
