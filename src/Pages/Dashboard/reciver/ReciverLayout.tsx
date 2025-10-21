@@ -23,12 +23,12 @@ export default function ReciverLayout() {
 
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Sidebar */}
+    
       <aside
         className={`fixed top-0 left-0 h-full w-64 bg-gray-100 dark:bg-gray-800 p-4 flex flex-col gap-4 transition-transform duration-300
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 z-50`}
       >
-        {/* Mobile close button */}
+       
         <div className="flex justify-end md:hidden mb-4">
           <button
             onClick={() => setSidebarOpen(false)}
@@ -40,7 +40,6 @@ export default function ReciverLayout() {
 
         <h2 className="text-xl font-bold mb-6 dark:text-white">Receiver Panel</h2>
 
-        {/* Links */}
         {links.map((link) => (
           <Link
             key={link.path}
@@ -56,7 +55,6 @@ export default function ReciverLayout() {
           </Link>
         ))}
 
-        {/* Logout button */}
         <div className="mt-auto">
           <button
             onClick={handleLogout}
@@ -68,7 +66,6 @@ export default function ReciverLayout() {
         </div>
       </aside>
 
-      {/* Overlay for mobile sidebar */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 backdrop-blur-xs bg-black/20 z-40 md:hidden"
@@ -76,9 +73,9 @@ export default function ReciverLayout() {
         ></div>
       )}
 
-      {/* Main content */}
+  
       <div className="flex-1 md:ml-64 flex flex-col min-h-screen">
-        {/* Mobile header */}
+     
         <header className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-md md:hidden">
           <button
             onClick={() => setSidebarOpen(!isSidebarOpen)}

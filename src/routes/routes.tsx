@@ -27,6 +27,7 @@ import ParcelDetails from "../Pages/Dashboard/admin/ParcelDetails";
 import ViewIncoming from "../Pages/Dashboard/reciver/ViewIncoming";
 import ReceiverParcelDetails from "../Pages/Dashboard/reciver/ReciverParcelDetails";
 import DeliveryHistory from "../Pages/Dashboard/reciver/DeliveryHistory";
+import SenderParcelDetails from "../Pages/Dashboard/sender/ParcelDetails";
 
 export const router = createBrowserRouter([
   // Public routes
@@ -54,6 +55,7 @@ export const router = createBrowserRouter([
           { path: "dashboard", element: <SenderDashboard /> },
           { path: "create", element: <CreateParcel/> },
           { path: "viewall", element: <ViewParcels/> },
+          { path: "parcels/:id", element: <SenderParcelDetails/> },
           
         ],
       },

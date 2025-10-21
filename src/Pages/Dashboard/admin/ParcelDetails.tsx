@@ -53,21 +53,39 @@ const ParcelDetails = () => {
       <p><strong>From:</strong> {parcel.fromAddress}</p>
       <p><strong>To:</strong> {parcel.toAddress}</p>
 
-      <p className="mt-4 font-semibold">Status Logs:</p>
-      <div className="max-h-40 overflow-y-auto border p-2 rounded mb-4">
+      <p className="mt-6 font-semibold mb-2">Status Timeline:</p>
+      <div className="relative border-l-2 border-gray-300 ml-4">
         {parcel.trackingEvents?.map((log: any, index: number) => (
-          <div key={index} className="border-b py-1">
-            <p><strong>Status:</strong> {log.status}</p>
-            {log.note && <p><strong>Note:</strong> {log.note}</p>}
-            {log.location && <p><strong>Location:</strong> {log.location}</p>}
-            <p className="text-sm text-gray-500">
-              {new Date(log.timestamp).toLocaleString()}
-            </p>
+          <div key={index} className="mb-6 ml-6 relative">
+          
+            <span
+              className={`absolute -left-11 top-0 w-10 h-10 flex items-center justify-center rounded-full text-white font-bold
+                ${log.status === "Delivered"
+                  ? "bg-green-500"
+                  : log.status === "In Transit"
+                  ? "bg-yellow-500"
+                  : log.status === "Cancelled"
+                  ? "bg-red-500"
+                  : "bg-blue-500"
+                }`}
+            >
+              {index + 1}
+            </span>
+         
+            <div className="bg-white p-4 rounded shadow">
+              <p className="font-semibold">{log.status}</p>
+              {log.note && <p><strong>Note:</strong> {log.note}</p>}
+              {log.location && <p className="text-gray-500 text-sm">Location: {log.location}</p>}
+              <p className="text-gray-400 text-sm">
+                {new Date(log.timestamp).toLocaleString()}
+              </p>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-col gap-2">
+      
+      <div className="flex flex-col gap-2 mt-6">
         <select
           value={newStatus}
           onChange={(e) => setNewStatus(e.target.value)}
@@ -99,7 +117,7 @@ const ParcelDetails = () => {
 
         <button
           onClick={handleUpdateStatus}
-          className="bg-blue-600 text-white px-3 py-1 rounded mt-2"
+          className="bg-blue-600 text-white px-3 py-1 rounded mt-2 hover:bg-blue-700"
         >
           Update Status
         </button>

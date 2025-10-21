@@ -23,7 +23,7 @@ export default function CreateParcel() {
   ) => {
     const { name, value } = e.target;
 
-    // Convert weight and baseFee to numbers
+
     if (name === "weight" || name === "baseFee") {
       setForm({ ...form, [name]: Number(value) });
     } else {
@@ -34,20 +34,20 @@ export default function CreateParcel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Prepare payload
-    const payload: any = { ...form,weight: Number(form.weight),
-    baseFee: Number(form.baseFee), };
+    const payload: any = {
+      ...form, weight: Number(form.weight),
+      baseFee: Number(form.baseFee),
+    };
 
-    // Remove couponCode if empty
     if (!payload.couponCode) {
       delete payload.couponCode;
     }
-console.log(payload)
+    console.log(payload)
     try {
-     const res:any= await createParcel(payload).unwrap();
+      const res: any = await createParcel(payload).unwrap();
       toast.success("Parcel created successfully!");
 
-      // Reset form
+     
       setForm({
         sender: "",
         receiver: "",

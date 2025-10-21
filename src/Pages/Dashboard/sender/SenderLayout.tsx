@@ -38,7 +38,7 @@ const handleLogout = () => {
           </button>
         </div>
 
-        <h2 className="text-xl font-bold mb-6 dark:text-white">Admin Panel</h2>
+        <h2 className="text-xl font-bold mb-6 dark:text-white">Sender Panel</h2>
 
         <div className="flex flex-col gap-2">
           {links.map((link) => (
