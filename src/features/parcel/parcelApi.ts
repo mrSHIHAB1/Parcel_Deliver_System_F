@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "../../app/store";
-import type { Parcel } from "./apiTypes";
+import type { GetAllParcelsResponse, Parcel } from "./apiTypes";
 
 
 export const parcelApi = createApi({
@@ -37,12 +37,12 @@ export const parcelApi = createApi({
       }),
       invalidatesTags: ["Parcel"],
     }),
-    getParcels: builder.query<Parcel[], void>({
+    getParcels: builder.query<GetAllParcelsResponse, void>({
       query: () => "/getParcel",
       providesTags: ["Parcel"],
     }),
 
-    getReceiverParcels: builder.query<{ data: Parcel[] }, void>({
+    getReceiverParcels: builder.query<GetAllParcelsResponse, void>({
       query: () => "/reciverParcels",
       providesTags: ["Parcel"],
     }),
@@ -56,7 +56,7 @@ export const parcelApi = createApi({
       invalidatesTags: ["Parcel"],
     }),
 
-    getReceiverHistory: builder.query<{ data: Parcel[] }, void>({
+    getReceiverHistory: builder.query<GetAllParcelsResponse, void>({
       query: () => "/getreciverhistory",
       providesTags: ["Parcel"],
     }),

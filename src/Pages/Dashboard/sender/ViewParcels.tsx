@@ -1,4 +1,4 @@
-import { data } from "react-router-dom";
+
 import { useGetParcelsQuery, useCancelParcelMutation } from "../../../features/parcel/parcelApi";
 import { toast } from "react-hot-toast";
 

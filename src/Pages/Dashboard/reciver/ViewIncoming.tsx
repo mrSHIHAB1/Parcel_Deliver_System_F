@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useGetReceiverParcelsQuery } from "../../../features/parcel/parcelApi";
 import { useNavigate } from "react-router-dom";
 

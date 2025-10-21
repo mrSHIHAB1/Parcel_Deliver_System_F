@@ -61,7 +61,7 @@ const ParcelTrackingPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.data.trackingEvents.map((event, index) => (
+                {data.data.trackingEvents.map((event: any, index: number) => (
                   <tr
                     key={index}
                     className="border-t border-gray-200 dark:border-gray-700"

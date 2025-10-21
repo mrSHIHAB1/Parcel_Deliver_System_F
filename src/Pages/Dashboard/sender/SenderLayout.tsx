@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Menu, X, LogOut } from "lucide-react";
 import { logout } from "../../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 export default function AdminLayout() {
   const location = useLocation();
   const navigate = useNavigate();

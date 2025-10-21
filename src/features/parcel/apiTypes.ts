@@ -22,24 +22,25 @@ export interface GetAllParcelsResponse {
   message: string;
   data: any[];
 }
+interface TrackingEvent {
+  status: string;
+  note: string;
+  location: string;
+  timestamp: string;
+  _id: string;
+}
+
 export interface Parcel {
+  _id: string;
   trackingId: string;
   sender: string;
   type: string;
-  weight: number;
   fromAddress: string;
   toAddress: string;
-  fee: number;
-  discountAmount: number;
   status: string;
-  status_logs: {
-    status: string;
-    note: string;
-    location: string;
-    timestamp: string;
-    _id: string;
-  }[];
+  trackingEvents: TrackingEvent[];
 }
+
 export interface GetParcelsResponse {
   statusCode: number;
   success: boolean;
