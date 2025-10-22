@@ -8,6 +8,7 @@ import { Moon, Sun } from "lucide-react";
 
 export const AdminDashboard = () => {
   const { data, isLoading, isError } = useGetAllParcelsQuery();
+  const { theme, toggleTheme } = useTheme();
   const parcels = data?.data || [];
 
   const totalParcels = parcels.length;
@@ -43,11 +44,11 @@ export const AdminDashboard = () => {
 
   if (isError)
     return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
-const { theme, toggleTheme } = useTheme();
+
 
   return (
     <div className="p-6 dark:bg-gray-900 min-h-screen">
-      {/* Header */}
+     
       <div className="flex pb-5 justify-between text-gray-800 dark:text-gray-200">
         <div className="flex font-bold items-center justify-center space-x-2">
           <img src={Truck} className="w-10" alt="Truck" />
@@ -66,7 +67,7 @@ const { theme, toggleTheme } = useTheme();
           </button>
       </div>
 
-      {/* Overview Cards */}
+ 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6">
         <OverviewCard title="Total Parcels" value={totalParcels} color="bg-indigo-500" />
         <OverviewCard title="Delivered" value={delivered} color="bg-green-500" />
@@ -74,9 +75,9 @@ const { theme, toggleTheme } = useTheme();
         <OverviewCard title="Pending / Cancelled" value={pendingOrCancelled} color="bg-red-500" />
       </div>
 
-      {/* Charts */}
+    
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
-        {/* Pie Chart */}
+       
         <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow">
           <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Delivery Status Distribution</h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -96,7 +97,7 @@ const { theme, toggleTheme } = useTheme();
               </Pie>
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#1F2937", // dark tooltip background
+                  backgroundColor: "#1F2937", 
                   color: "#fff",
                   borderRadius: "8px",
                   border: "none",
@@ -111,7 +112,7 @@ const { theme, toggleTheme } = useTheme();
           <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Monthly Shipment Trends</h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={monthlyShipments}>
-              <XAxis dataKey="month" stroke="#4B5563" /> {/* dark gray labels */}
+              <XAxis dataKey="month" stroke="#4B5563" />
               <YAxis stroke="#4B5563" />
               <Tooltip
                 contentStyle={{

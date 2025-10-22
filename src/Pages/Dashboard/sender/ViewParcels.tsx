@@ -10,9 +10,8 @@ export default function ViewParcels() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const parcelsPerPage = 10;
+  const parcelsPerPage = 9;
 
-  // ---------------- Filter by receiver phone ----------------
   const filteredParcels = useMemo(() => {
     if (!searchTerm) return parcels;
     return parcels.filter((p) =>
@@ -32,7 +31,7 @@ export default function ViewParcels() {
     setCurrentPage(page);
   };
 
-    if (isLoading)
+  if (isLoading)
     return (
       <div className="flex justify-center items-center h-64">
         <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
@@ -42,10 +41,9 @@ export default function ViewParcels() {
   if (isError)
     return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
 
-
   return (
-    <div className="space-y-6">
-      {/* ---------------- Search Bar ---------------- */}
+    <div className="space-y-6 p-4">
+
       <div className="flex justify-center mb-4">
         <div className="relative w-full max-w-md">
           <input
@@ -54,7 +52,7 @@ export default function ViewParcels() {
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset page on search
+              setCurrentPage(1);
             }}
             className="w-full border rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-teal-400"
           />
@@ -62,71 +60,127 @@ export default function ViewParcels() {
         </div>
       </div>
 
-      {/* ---------------- Parcels Grid ---------------- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {paginatedParcels.map((parcel) => (
-          <div
-            key={parcel.id}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-5 hover:shadow-2xl transition-shadow duration-300 cursor-pointer flex flex-col justify-between"
-            onClick={() => navigate(`/sender/parcels/${parcel.id}`)}
-          >
-            {/* Header */}
-            <div className="flex justify-between items-center mb-3">
-              <span className="font-semibold text-teal-500">{parcel.trackingId}</span>
-              <span
-                className={`px-2 py-1 text-xs font-medium rounded-full ${
-                  parcel.status === "Delivered"
-                    ? "bg-green-100 text-green-700"
-                    : parcel.status === "In Transit"
-                    ? "bg-yellow-100 text-yellow-700"
-                    : parcel.status === "Pending"
-                    ? "bg-red-100 text-red-700"
-                    : "bg-gray-100 text-gray-700"
-                }`}
+
+      <div className="hidden md:block overflow-x-auto rounded-lg shadow-md">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead className="bg-gray-50 dark:bg-gray-700">
+            <tr>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Tracking ID</th>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Receiver</th>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Type</th>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Weight</th>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Fee</th>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Status</th>
+              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Created At</th>
+              <th className="px-4 py-2 text-center text-gray-800 dark:text-gray-200">Action</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            {paginatedParcels.length > 0 ? (
+              paginatedParcels.map((parcel) => (
+                <tr key={parcel.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.trackingId}</td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.receiver}</td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.type}</td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.weight} kg</td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">${parcel.fee}</td>
+                  <td className="px-4 py-2">
+                    <span
+                      className={`px-2 py-1 rounded-full text-white font-semibold ${parcel.status === "Delivered"
+                          ? "bg-green-500"
+                          : parcel.status === "In Transit"
+                            ? "bg-yellow-500"
+                            : parcel.status === "Pending"
+                              ? "bg-red-500"
+                              : "bg-gray-500"
+                        }`}
+                    >
+                      {parcel.status}
+                    </span>
+                  </td>
+                  <td className="px-4 py-2 text-gray-500 text-sm">
+                    {new Date(parcel.createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    <button
+                      onClick={() => navigate(`/sender/parcels/${parcel.id}`)}
+                      className="px-3 py-1 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition"
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={8} className="text-center py-4 text-gray-500 dark:text-gray-400">
+                  No parcels found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="md:hidden space-y-4">
+        {paginatedParcels.length > 0 ? (
+          paginatedParcels.map((parcel) => (
+            <div key={parcel.id} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md space-y-2">
+              <div className="flex justify-between items-center">
+                <h3 className="font-bold text-gray-800 dark:text-white">{parcel.trackingId}</h3>
+                <span className="text-gray-500 dark:text-gray-300">{parcel.type}</span>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300">Receiver: {parcel.receiver}</p>
+              <p className="text-gray-700 dark:text-gray-300">Weight: {parcel.weight} kg</p>
+              <p className="text-gray-700 dark:text-gray-300">Fee: ${parcel.fee}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Status:{" "}
+                <span
+                  className={`px-2 py-1 rounded-full text-white font-semibold ${parcel.status === "Delivered"
+                      ? "bg-green-500"
+                      : parcel.status === "In Transit"
+                        ? "bg-yellow-500"
+                        : parcel.status === "Pending"
+                          ? "bg-red-500"
+                          : "bg-gray-500"
+                    }`}
+                >
+                  {parcel.status}
+                </span>
+              </p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
+                Created At: {new Date(parcel.createdAt).toLocaleDateString()}
+              </p>
+              <button
+                onClick={() => navigate(`/sender/parcels/${parcel.id}`)}
+                className="w-full px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition"
               >
-                {parcel.status}
-              </span>
+                View
+              </button>
             </div>
-
-            {/* Body */}
-            <div className="mb-3">
-              <p className="text-gray-700 dark:text-gray-300"><strong>Receiver:</strong> {parcel.receiver}</p>
-              <p className="text-gray-700 dark:text-gray-300"><strong>Type:</strong> {parcel.type}</p>
-              <p className="text-gray-700 dark:text-gray-300"><strong>Weight:</strong> {parcel.weight} kg</p>
-              <p className="text-gray-700 dark:text-gray-300"><strong>Fee:</strong> ${parcel.fee}</p>
-            </div>
-
-            {/* Footer */}
-            <div className="text-gray-400 text-sm flex justify-between items-center">
-              <span>{new Date(parcel.createdAt).toLocaleDateString()}</span>
-              <span className="text-gray-500 text-xs">Click to view details</span>
-            </div>
-          </div>
-        ))}
-        {paginatedParcels.length === 0 && (
-          <p className="text-center text-gray-500 col-span-full">No parcels found.</p>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 dark:text-gray-400">No parcels found.</p>
         )}
       </div>
 
-      {/* ---------------- Pagination ---------------- */}
       {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-4">
+        <div className="flex justify-center gap-2 mt-4 flex-wrap">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             className="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           >
-            Prev
+            Previous
           </button>
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}
               onClick={() => handlePageChange(i + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === i + 1
-                  ? "bg-teal-500 text-white"
-                  : "bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
-              }`}
+              className={`px-3 py-1 rounded ${currentPage === i + 1
+                  ? " text-black dark:text-white"
+                  : "text-black dark:text-white"
+                }`}
             >
               {i + 1}
             </button>

@@ -36,15 +36,15 @@ const DeliveryHistory = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+    <><h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white text-center mt-5">
         Delivery History
       </h2>
+    <div className="bg-white dark:bg-gray-800 shadow-xs rounded-2xl p-6">
+      
 
-      {/* Table for large screens */}
       <div className="hidden md:block overflow-x-auto">
         <table className="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden">
-          <thead className="bg-gray-100 dark:bg-gray-700">
+          <thead className="bg-white dark:bg-gray-700">
             <tr>
               {["No", "Sender", "Parcel", "Status", "Delivered On", "Received?"].map(
                 (head, i) => (
@@ -63,7 +63,7 @@ const DeliveryHistory = () => {
             {data.data.map((parcel: any, index: number) => (
               <tr
                 key={parcel._id}
-                className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition "
               >
                 <td className="px-4 py-2 text-sm text-gray-800 dark:text-gray-300">
                   {index + 1}
@@ -76,9 +76,9 @@ const DeliveryHistory = () => {
                 </td>
                 <td className="px-4 py-2 text-sm">
                   <span
-                    className={`px-2 py-1 rounded text-xs font-semibold ${
+                    className={`px-2 py-1 rounded-xl text-xs font-semibold ${
                       parcel.status === "Delivered"
-                        ? "bg-green-100 text-green-700"
+                        ? "bg-green-500 text-white"
                         : "bg-yellow-100 text-yellow-700"
                     }`}
                   >
@@ -159,6 +159,7 @@ const DeliveryHistory = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

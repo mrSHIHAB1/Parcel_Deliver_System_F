@@ -23,27 +23,33 @@ export default function CreateParcel() {
   ) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // clear error on change
+    setErrors({ ...errors, [name]: "" }); 
   };
 
-  const validateForm = () => {
-    const newErrors: any = {};
-    if (!form.sender) newErrors.sender = "Sender phone is required";
-    if (!form.receiver) newErrors.receiver = "Receiver phone is required";
-    if (!form.type) newErrors.type = "Parcel type is required";
+const validateForm = () => {
+  const newErrors: any = {};
 
-    if (!form.weight || isNaN(Number(form.weight)) || Number(form.weight) <= 0)
-      newErrors.weight = "Weight must be a number greater than 0";
+  if (!form.sender || form.sender.trim().length < 11) newErrors.sender = "Sender phone is required";
+  if (!form.receiver|| form.receiver.trim().length < 11) newErrors.receiver = "Receiver phone is required";
+  if (!form.type) newErrors.type = "Parcel type is required";
 
-    if (!form.baseFee || isNaN(Number(form.baseFee)) || Number(form.baseFee) <= 0)
-      newErrors.baseFee = "Base Fee must be a number greater than 0";
+  if (!form.weight || isNaN(Number(form.weight)) || Number(form.weight) <= 0)
+    newErrors.weight = "Weight must be a number greater than 0";
 
-    if (!form.fromAddress) newErrors.fromAddress = "From Address is required";
-    if (!form.toAddress) newErrors.toAddress = "To Address is required";
+  if (!form.baseFee || isNaN(Number(form.baseFee)) || Number(form.baseFee) <= 0)
+    newErrors.baseFee = "Base Fee must be a number greater than 0";
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  if (!form.fromAddress || form.fromAddress.trim().length < 5) {
+    newErrors.fromAddress = "From Address is required (min 5 characters)";
+  }
+
+  if (!form.toAddress || form.toAddress.trim().length < 5) {
+    newErrors.toAddress = "To Address is required (min 5 characters)";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +91,7 @@ export default function CreateParcel() {
       <h2 className="text-2xl font-bold mb-6 text-center dark:text-white">Create Parcel</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Sender */}
+       
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">Sender Phone</label>
           <input
@@ -99,7 +105,7 @@ export default function CreateParcel() {
           {errors.sender && <p className="text-red-500 text-sm mt-1">{errors.sender}</p>}
         </div>
 
-        {/* Receiver */}
+     
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">Receiver Phone</label>
           <input
@@ -113,7 +119,7 @@ export default function CreateParcel() {
           {errors.receiver && <p className="text-red-500 text-sm mt-1">{errors.receiver}</p>}
         </div>
 
-        {/* Parcel Type */}
+  
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">Parcel Type</label>
           <input
@@ -127,7 +133,7 @@ export default function CreateParcel() {
           {errors.type && <p className="text-red-500 text-sm mt-1">{errors.type}</p>}
         </div>
 
-        {/* Weight */}
+      
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">Weight (kg)</label>
           <input
@@ -142,7 +148,7 @@ export default function CreateParcel() {
           {errors.weight && <p className="text-red-500 text-sm mt-1">{errors.weight}</p>}
         </div>
 
-        {/* Base Fee */}
+        
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">Base Fee</label>
           <input
@@ -157,7 +163,7 @@ export default function CreateParcel() {
           {errors.baseFee && <p className="text-red-500 text-sm mt-1">{errors.baseFee}</p>}
         </div>
 
-        {/* Coupon Code */}
+     
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">Coupon Code (Optional)</label>
           <input
@@ -169,7 +175,6 @@ export default function CreateParcel() {
           />
         </div>
 
-        {/* From Address */}
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">From Address</label>
           <input
@@ -183,7 +188,6 @@ export default function CreateParcel() {
           {errors.fromAddress && <p className="text-red-500 text-sm mt-1">{errors.fromAddress}</p>}
         </div>
 
-        {/* To Address */}
         <div className="flex flex-col">
           <label className="mb-1 font-medium dark:text-white">To Address</label>
           <input
@@ -202,10 +206,7 @@ export default function CreateParcel() {
         type="submit"
         disabled={isLoading}
         className="mt-6 w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-lg transition-colors duration-300"
-      >
-        {isLoading ? <><div className="flex justify-center items-center h-64">
-        <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
-      </div></>: "Create Parcel"}
+      >Create Parcel
       </button>
     </form>
   );

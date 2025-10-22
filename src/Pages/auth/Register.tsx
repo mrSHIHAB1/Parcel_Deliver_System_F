@@ -67,7 +67,7 @@ export default function Register() {
           Register
         </h2>
 
-        {/* Name */}
+        
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-200">
           Name <span className="text-red-500">*</span>
         </label>
@@ -79,7 +79,7 @@ export default function Register() {
         />
         {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
 
-        {/* Email */}
+       
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-200">
           Email <span className="text-red-500">*</span>
         </label>
@@ -91,7 +91,7 @@ export default function Register() {
         />
         {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
 
-        {/* Password */}
+     
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-200">
           Password <span className="text-red-500">*</span>
         </label>
@@ -104,7 +104,6 @@ export default function Register() {
         />
         {errors.password && <p className="text-red-500 text-sm mb-2">{errors.password}</p>}
 
-        {/* Phone */}
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-200">
           Phone <span className="text-red-500">*</span>
         </label>
@@ -116,7 +115,7 @@ export default function Register() {
         />
         {errors.phone && <p className="text-red-500 text-sm mb-2">{errors.phone}</p>}
 
-        {/* Address */}
+      
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-200">
           Address <span className="text-red-500">*</span>
         </label>
@@ -128,7 +127,6 @@ export default function Register() {
         />
         {errors.address && <p className="text-red-500 text-sm mb-2">{errors.address}</p>}
 
-        {/* Role */}
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-200">
           Role <span className="text-red-500">*</span>
         </label>

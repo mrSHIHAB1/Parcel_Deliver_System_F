@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Truck, Clock, Shield, MapPin, DollarSign, CheckCircle } from "lucide-react";
 
 const features = [
@@ -34,10 +34,10 @@ const features = [
   },
 ];
 
-export  function Features() {
+export function Features() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6">
-      {/* Hero Section */}
+
       <section className="text-center py-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Features</h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -45,7 +45,6 @@ export  function Features() {
         </p>
       </section>
 
-      {/* Features Grid */}
       <section className="grid md:grid-cols-3 gap-6 py-12">
         {features.map((feature, index) => (
           <div
@@ -59,7 +58,7 @@ export  function Features() {
         ))}
       </section>
 
-      {/* Call to Action */}
+
       <section className="text-center py-12">
         <h2 className="text-3xl font-bold mb-4">Experience Premium Parcel Delivery</h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6">

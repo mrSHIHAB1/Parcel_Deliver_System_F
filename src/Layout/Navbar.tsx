@@ -17,7 +17,7 @@ function Navbar() {
     navigate("/login");
   };
 
-  // Determine dashboard path based on role
+  
   const dashboardPath =
     role === "SENDER"
       ? "/sender"
@@ -29,7 +29,7 @@ function Navbar() {
 
   return (
     <div>
-     <div className="navbar bg-base-100 dark:bg-neutral text-black dark:text-white shadow-sm">
+     <div className="navbar bg-base-100 dark:bg-neutral text-black dark:text-white shadow-sm ">
  
         <div className="navbar-start">
           <div className="dropdown">

@@ -5,7 +5,7 @@ import type { GetAllParcelsResponse, GetAllUsersResponse } from "./apiTypes";
 export const adminApi = createApi({
   reducerPath: "adminApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1",
+    baseUrl: "https://parcelbackend-kappa.vercel.app/api/v1",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {

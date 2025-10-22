@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MapPin, Clock, Package, User } from "lucide-react";
+import { MapPin, Clock, User } from "lucide-react";
 import { useGetTrackingEventsQuery } from "../../features/parcel/parcelApi";
 
 const ParcelTrackingPage = () => {
@@ -16,12 +16,11 @@ const ParcelTrackingPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6 ">
+    <div className="max-w-4xl mx-auto p-6 space-y-6 dark:bg-gray-800 w-full">
       <h1 className="text-2xl font-bold mb-4 text-center dark:text-white">
         Track Your Parcel
       </h1>
 
-      {/* ---------------- Search Form ---------------- */}
       <form onSubmit={handleSearch} className="flex mb-6">
         <input
           type="text"
@@ -50,10 +49,10 @@ const ParcelTrackingPage = () => {
         </p>
       )}
 
-      {/* ---------------- Timeline ---------------- */}
+
       {!isLoading && data && data.success && (
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 space-y-4">
-          {/* Parcel Info */}
+
           <div className="space-y-2 mb-4">
             <p className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
               <User className="w-5 h-5" /> <strong>Sender:</strong>{" "}
@@ -72,17 +71,17 @@ const ParcelTrackingPage = () => {
             <div className="relative border-l-2 border-gray-200 dark:border-gray-600 ml-4">
               {data.data.trackingEvents.map((log: any, index: number) => (
                 <div key={index} className="mb-6 ml-6 relative">
-                  {/* Circle */}
+
                   <span
                     className={`absolute -left-11 top-0 w-10 h-10 flex items-center justify-center rounded-full text-white font-bold
                     ${log.status === "Delivered"
-                      ? "bg-green-500"
-                      : log.status === "In Transit"
-                      ? "bg-yellow-500"
-                      : log.status === "Cancelled"
-                      ? "bg-red-500"
-                      : "bg-blue-500"
-                    }`}
+                        ? "bg-green-500"
+                        : log.status === "In Transit"
+                          ? "bg-yellow-500"
+                          : log.status === "Cancelled"
+                            ? "bg-red-500"
+                            : "bg-blue-500"
+                      }`}
                   >
                     {index + 1}
                   </span>

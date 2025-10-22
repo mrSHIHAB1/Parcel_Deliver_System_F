@@ -1,13 +1,15 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useGetReceiverHistoryQuery } from "../../../features/parcel/parcelApi"; // adjust path
+
+import { useGetReceiverParcelsQuery } from "../../../features/parcel/parcelApi"; 
 import OverviewCard from "../../../components/DataVisualization/OverviewCard";
 import Truck from "../../../assets/Truck.svg";
 import { useTheme } from "../../../hooks/useTheme";
+import { Moon, Sun } from "lucide-react";
 
 export function ReceiverDashboard() {
-  const { data, isLoading, isError } = useGetReceiverHistoryQuery();
-  const navigate = useNavigate();
+  const { data, isLoading, isError } = useGetReceiverParcelsQuery();
+  const { theme, toggleTheme } = useTheme();
+
 
   const parcels = data?.data || [];
 
@@ -39,13 +41,12 @@ export function ReceiverDashboard() {
 
   if (isError)
     return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
-const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="p-6 dark:bg-gray-900 min-h-screen">
-      <div className="flex font-bold items-center justify-start space-x-2 pb-10 text-gray-800 dark:text-gray-200">
-        <img src={Truck} className="w-10" alt="Truck" />
-        <p>Receiver Dashboard</p>
+      <div className="flex font-bold items-center justify-between space-x-2 pb-10 text-gray-800 dark:text-gray-200">
+     <div className="flex space-x-2">   <img src={Truck} className="w-10" alt="Truck" />
+        <p>Receiver Dashboard</p></div>
         <div>
           <button
             onClick={toggleTheme}
@@ -61,7 +62,6 @@ const { theme, toggleTheme } = useTheme();
         </div>
       </div>
 
-      {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
         <OverviewCard title="Total Parcels" value={totalParcels} color="bg-indigo-500" />
         <OverviewCard title="Delivered" value={delivered} color="bg-green-500" />
@@ -70,7 +70,7 @@ const { theme, toggleTheme } = useTheme();
         <OverviewCard title="Cancelled" value={cancelled} color="bg-red-500" />
       </div>
 
-      {/* Search and Filter */}
+    
       <div className="flex flex-col sm:flex-row gap-4 mb-4">
         <input
           type="text"
@@ -94,7 +94,7 @@ const { theme, toggleTheme } = useTheme();
         </select>
       </div>
 
-      {/* Parcels Table */}
+ 
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-4">
         <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Your Parcels</h2>
         <div className="overflow-x-auto">

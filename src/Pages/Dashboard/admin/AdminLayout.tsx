@@ -25,14 +25,14 @@ const handleLogout = () => {
 
   return (
      <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* ---------------- Sidebar ---------------- */}
+    
       <aside
         className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 p-4 flex flex-col transition-transform duration-300
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 z-50 shadow-lg`}
       >
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-3">
-            {/* User Avatar */}
+           
             <img
               src={user?.avatar || Profile}
               alt="User Avatar"
@@ -43,7 +43,7 @@ const handleLogout = () => {
               <p className="text-sm text-gray-500 dark:text-gray-400">{user?.role}</p>
             </div>
           </div>
-          {/* Close Button on Mobile */}
+     
           <button
             onClick={() => setSidebarOpen(false)}
             className="md:hidden p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -52,7 +52,7 @@ const handleLogout = () => {
           </button>
         </div>
 
-        {/* Navigation Links */}
+       
         <nav className="flex flex-col gap-2">
           {links.map((link) => (
             <Link
@@ -70,7 +70,6 @@ const handleLogout = () => {
           ))}
         </nav>
 
-        {/* Logout */}
         <div className="mt-auto">
           <button
             onClick={handleLogout}
@@ -82,7 +81,7 @@ const handleLogout = () => {
         </div>
       </aside>
 
-      {/* ---------------- Backdrop for Mobile ---------------- */}
+     
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
@@ -90,10 +89,9 @@ const handleLogout = () => {
         ></div>
       )}
 
-      {/* ---------------- Main Content ---------------- */}
+      
       <div className="flex-1 md:ml-64 flex flex-col min-h-screen">
-        
-        {/* Header */}
+      
         <header className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-md md:hidden">
           <button
             onClick={() => setSidebarOpen(!isSidebarOpen)}

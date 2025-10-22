@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ChevronDown } from "lucide-react"; // optional arrow icon
+import  { useState } from "react";
+import { ChevronDown } from "lucide-react"; 
 
 const faqs = [
   {

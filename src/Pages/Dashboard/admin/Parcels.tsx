@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import  { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetAllParcelsQuery } from "../../../features/parcel/adminApi";
 
@@ -14,7 +14,7 @@ const AdminParcelsTable = () => {
   const itemsPerPage = 10;
   const parcels = data?.data || [];
 
-  // --- Filter & Search & Date Range ---
+  
   const filteredParcels = useMemo(() => {
     const now = new Date();
     return parcels
@@ -49,7 +49,6 @@ const AdminParcelsTable = () => {
       );
   }, [parcels, search, statusFilter, dateRange]);
 
-  // --- Pagination ---
   const totalPages = Math.ceil(filteredParcels.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentParcels = filteredParcels.slice(startIndex, startIndex + itemsPerPage);
@@ -72,7 +71,7 @@ const AdminParcelsTable = () => {
         Parcels Management
       </h2>
 
-      {/* Filters */}
+    
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-3">
         <input
           type="text"
@@ -115,7 +114,6 @@ const AdminParcelsTable = () => {
         </select>
       </div>
 
-      {/* Table for large screens */}
       <div className="hidden md:block overflow-x-auto rounded-lg shadow-lg">
         <table className="min-w-full bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
           <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
@@ -172,7 +170,7 @@ const AdminParcelsTable = () => {
         </table>
       </div>
 
-      {/* Card layout for mobile */}
+    
       <div className="md:hidden space-y-4">
         {currentParcels.map((parcel) => (
           <div
@@ -223,7 +221,7 @@ const AdminParcelsTable = () => {
         ))}
       </div>
 
-      {/* Pagination */}
+    
       <div className="flex justify-center items-center mt-6 space-x-4">
         <button
           onClick={handlePrev}

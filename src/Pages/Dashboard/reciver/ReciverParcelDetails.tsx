@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetReceiverParcelsQuery } from "../../../features/parcel/parcelApi";
 import { MapPin, Package, User, Clock } from "lucide-react";
@@ -7,7 +7,7 @@ const ReceiverParcelDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // Fetch all parcels for receiver
+
   const { data, isLoading, isError } = useGetReceiverParcelsQuery();
 
   if (isLoading)
@@ -34,7 +34,7 @@ const ReceiverParcelDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
-      {/* Back Button */}
+  
       <button
         onClick={() => navigate(-1)}
         className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
@@ -42,7 +42,7 @@ const ReceiverParcelDetails = () => {
         ← Back
       </button>
 
-      {/* Header Section */}
+   
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 flex flex-col md:flex-row md:justify-between md:items-center">
         <div className="space-y-2">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
@@ -67,7 +67,7 @@ const ReceiverParcelDetails = () => {
         </span>
       </div>
 
-      {/* Parcel Info + Timeline */}
+     
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Parcel Details */}
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 space-y-3">
@@ -88,7 +88,7 @@ const ReceiverParcelDetails = () => {
           </p>
         </div>
 
-        {/* Timeline Section */}
+        
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6">
           <h3 className="text-lg font-semibold mb-4 dark:text-white">
             Tracking Timeline
@@ -97,7 +97,7 @@ const ReceiverParcelDetails = () => {
             {parcel.trackingEvents?.length > 0 ? (
               parcel.trackingEvents.map((log: any, index: number) => (
                 <div key={index} className="mb-6 ml-6 relative">
-                  {/* Timeline Circle */}
+                 
                   <span
                     className={`absolute -left-11 top-0 w-10 h-10 flex items-center justify-center rounded-full text-white font-bold
                       ${
@@ -113,7 +113,7 @@ const ReceiverParcelDetails = () => {
                     {index + 1}
                   </span>
 
-                  {/* Timeline Card */}
+                
                   <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow-sm">
                     <p className="font-semibold text-gray-800 dark:text-white">
                       {log.status}

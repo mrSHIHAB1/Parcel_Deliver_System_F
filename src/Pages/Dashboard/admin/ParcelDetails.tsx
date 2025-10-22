@@ -44,7 +44,7 @@ const ParcelDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
-      {/* Back Button */}
+    
       <button
         onClick={() => navigate(-1)}
         className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
@@ -52,7 +52,6 @@ const ParcelDetails = () => {
         ← Back
       </button>
 
-      {/* Header */}
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 flex flex-col md:flex-row md:justify-between md:items-center">
         <div className="space-y-2">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">{parcel.trackingId}</h2>
@@ -79,7 +78,6 @@ const ParcelDetails = () => {
         </span>
       </div>
 
-      {/* Parcel Info & Timeline */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Parcel Info */}
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 space-y-3">
@@ -100,13 +98,13 @@ const ParcelDetails = () => {
           </p>
         </div>
 
-        {/* Status Timeline */}
+    
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6">
           <h3 className="text-lg font-semibold mb-4">Status Timeline</h3>
           <div className="relative border-l-2 border-gray-200 dark:border-gray-600 ml-4">
             {parcel.trackingEvents?.map((log: any, index: number) => (
               <div key={index} className="mb-6 ml-6 relative">
-                {/* Circle */}
+               
                 <span
                   className={`absolute -left-11 top-0 w-10 h-10 flex items-center justify-center rounded-full text-white font-bold
                     ${log.status === "Delivered"
@@ -121,7 +119,7 @@ const ParcelDetails = () => {
                   {index + 1}
                 </span>
 
-                {/* Event card */}
+              
                 <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow-sm">
                   <p className="font-semibold text-gray-800 dark:text-white">{log.status}</p>
                   {log.note && <p className="text-gray-700 dark:text-gray-300"><strong>Note:</strong> {log.note}</p>}
@@ -138,7 +136,6 @@ const ParcelDetails = () => {
         </div>
       </div>
 
-      {/* Status Update Form */}
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6">
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <CheckCircle className="w-5 h-5 text-blue-500" />
