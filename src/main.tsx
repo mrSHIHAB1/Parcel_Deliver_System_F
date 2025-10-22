@@ -10,11 +10,14 @@ import { store } from "./app/store";
 import { Toaster } from "react-hot-toast";
 
 
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+   
     <Toaster />
    <Provider store={store}>
     <RouterProvider router={router} />
     </Provider>
+ 
   </React.StrictMode>
 );
