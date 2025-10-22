@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetAllParcelsQuery, useUpdateParcelStatusMutation } from "../../../features/parcel/adminApi";
 import { toast } from "react-hot-toast";

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import OverviewCard from "../../../components/DataVisualization/OverviewCard";
 import { useGetAllParcelsQuery } from "../../../features/parcel/adminApi";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
@@ -91,7 +91,7 @@ export const AdminDashboard = () => {
                 outerRadius={100}
                 label
               >
-                {statusCounts.map((entry, index) => (
+                {statusCounts.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>

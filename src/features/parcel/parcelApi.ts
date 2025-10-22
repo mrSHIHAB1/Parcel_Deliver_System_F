@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "../../app/store";
-import type { GetAllParcelsResponse, Parcel } from "./apiTypes";
+import type { GetAllParcelsResponse} from "./apiTypes";
 
 
 export const parcelApi = createApi({

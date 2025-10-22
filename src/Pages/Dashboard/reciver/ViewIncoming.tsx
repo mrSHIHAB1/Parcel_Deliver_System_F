@@ -76,7 +76,7 @@ const ViewIncoming = () => {
       </div>
 
       <div className="md:hidden space-y-4">
-        {data.data.map((parcel: any, index: number) => (
+        {data.data.map((parcel: any) => (
           <div key={parcel._id} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md transition">
             <div className="flex justify-between items-center mb-2">
               <h3 className="font-semibold text-gray-800 dark:text-white">{parcel.type}</h3>

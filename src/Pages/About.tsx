@@ -1,4 +1,4 @@
-import React from "react";
+
 import { User, Globe, Star } from "lucide-react";
 import react from "../assets/Profile.svg"; // replace with your images
 

@@ -120,7 +120,7 @@ export function SenderDashboard() {
                 outerRadius={100}
                 label
               >
-                {statusCounts.map((entry, index) => (
+                {statusCounts.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
