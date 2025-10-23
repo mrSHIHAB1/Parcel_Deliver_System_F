@@ -29,8 +29,8 @@ export default function CreateParcel() {
 const validateForm = () => {
   const newErrors: any = {};
 
-  if (!form.sender || form.sender.trim().length < 11) newErrors.sender = "Sender phone is required";
-  if (!form.receiver|| form.receiver.trim().length < 11) newErrors.receiver = "Receiver phone is required";
+  if (!form.sender || (form.sender.trim().length !== 11)) newErrors.sender = "Sender Valid phone is required";
+  if (!form.receiver||( form.receiver.trim().length !==11)) newErrors.receiver = "Receiver Valid phone is required";
   if (!form.type) newErrors.type = "Parcel type is required";
 
   if (!form.weight || isNaN(Number(form.weight)) || Number(form.weight) <= 0)

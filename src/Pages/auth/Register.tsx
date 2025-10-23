@@ -12,7 +12,7 @@ export default function Register() {
   const [role, setRole] = useState("SENDER");
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [registerMutation] = useRegisterMutation();
+  const [registerMutation,{isLoading}] = useRegisterMutation();
   const navigate = useNavigate();
 
   const validate = () => {
@@ -139,11 +139,16 @@ export default function Register() {
           <option value="RECIVER">Receiver</option>
         </select>
 
-        <button
+          <button
           type="submit"
-          className="bg-teal-600 hover:bg-teal-700 text-white w-full py-3 rounded-lg font-semibold transition-colors"
+           disabled={isLoading}
+        className={`${
+            isLoading
+              ? "bg-teal-400 cursor-not-allowed"
+              : "bg-teal-600 hover:bg-teal-700"
+          } text-white w-full py-3 rounded-lg font-semibold transition-all mb-4 flex items-center justify-center`}
         >
-          Register
+         {isLoading ? "Wait" : "Register"}
         </button>
       </form>
     </div>

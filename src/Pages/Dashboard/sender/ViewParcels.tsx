@@ -20,10 +20,10 @@ export default function ViewParcels() {
   }, [parcels, searchTerm]);
 
   const totalPages = Math.ceil(filteredParcels.length / parcelsPerPage);
-
+  const startIndex = (currentPage - 1) * parcelsPerPage;
   const paginatedParcels = filteredParcels.slice(
-    (currentPage - 1) * parcelsPerPage,
-    currentPage * parcelsPerPage
+    startIndex,
+    startIndex + parcelsPerPage
   );
 
   const handlePageChange = (page: number) => {
@@ -33,13 +33,17 @@ export default function ViewParcels() {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="w-16 h-16 border-4 border-teal-400 border-dashed rounded-full animate-spin"></div>
+      <div className="flex justify-center items-center h-64 bg-white/40 dark:bg-gray-900/40">
+        <div className="w-16 h-16 border-4 border-teal-400 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
 
   if (isError)
-    return <p className="text-center mt-10 text-red-500">Failed to load parcels.</p>;
+    return (
+      <p className="text-center mt-10 text-red-500">
+        Failed to load parcels.
+      </p>
+    );
 
   return (
     <div className="space-y-6 p-4">
@@ -65,35 +69,58 @@ export default function ViewParcels() {
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <thead className="bg-gray-50 dark:bg-gray-700">
             <tr>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Tracking ID</th>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Receiver</th>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Type</th>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Weight</th>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Fee</th>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Status</th>
-              <th className="px-4 py-2 text-left text-gray-800 dark:text-gray-200">Created At</th>
-              <th className="px-4 py-2 text-center text-gray-800 dark:text-gray-200">Action</th>
+              {[
+                "Tracking ID",
+                "Receiver",
+                "Type",
+                "Weight",
+                "Fee",
+                "Status",
+                "Created At",
+                "Action",
+              ].map((h) => (
+                <th
+                  key={h}
+                  className="px-4 py-2 text-left text-gray-800 dark:text-gray-200"
+                >
+                  {h}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {paginatedParcels.length > 0 ? (
               paginatedParcels.map((parcel) => (
-                <tr key={parcel.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.trackingId}</td>
-                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.receiver}</td>
-                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.type}</td>
-                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">{parcel.weight} kg</td>
-                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">${parcel.fee}</td>
+                <tr
+                  key={parcel.id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                >
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                    {parcel.trackingId}
+                  </td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                    {parcel.receiver}
+                  </td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                    {parcel.type}
+                  </td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                    {parcel.weight} kg
+                  </td>
+                  <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                    ${parcel.fee}
+                  </td>
                   <td className="px-4 py-2">
                     <span
-                      className={`px-2 py-1 rounded-full text-white font-semibold ${parcel.status === "Delivered"
+                      className={`px-2 py-1 rounded-full text-white font-semibold ${
+                        parcel.status === "Delivered"
                           ? "bg-green-500"
                           : parcel.status === "In Transit"
-                            ? "bg-yellow-500"
-                            : parcel.status === "Pending"
-                              ? "bg-red-500"
-                              : "bg-gray-500"
-                        }`}
+                          ? "bg-yellow-500"
+                          : parcel.status === "Pending"
+                          ? "bg-blue-500"
+                          : "bg-gray-500"
+                      }`}
                     >
                       {parcel.status}
                     </span>
@@ -113,7 +140,10 @@ export default function ViewParcels() {
               ))
             ) : (
               <tr>
-                <td colSpan={8} className="text-center py-4 text-gray-500 dark:text-gray-400">
+                <td
+                  colSpan={8}
+                  className="text-center py-4 text-gray-500 dark:text-gray-400"
+                >
                   No parcels found.
                 </td>
               </tr>
@@ -122,28 +152,43 @@ export default function ViewParcels() {
         </table>
       </div>
 
+     
       <div className="md:hidden space-y-4">
         {paginatedParcels.length > 0 ? (
           paginatedParcels.map((parcel) => (
-            <div key={parcel.id} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md space-y-2">
+            <div
+              key={parcel.id}
+              className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md space-y-2"
+            >
               <div className="flex justify-between items-center">
-                <h3 className="font-bold text-gray-800 dark:text-white">{parcel.trackingId}</h3>
-                <span className="text-gray-500 dark:text-gray-300">{parcel.type}</span>
+                <h3 className="font-bold text-gray-800 dark:text-white">
+                  {parcel.trackingId}
+                </h3>
+                <span className="text-gray-500 dark:text-gray-300">
+                  {parcel.type}
+                </span>
               </div>
-              <p className="text-gray-700 dark:text-gray-300">Receiver: {parcel.receiver}</p>
-              <p className="text-gray-700 dark:text-gray-300">Weight: {parcel.weight} kg</p>
-              <p className="text-gray-700 dark:text-gray-300">Fee: ${parcel.fee}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Receiver: {parcel.receiver}
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Weight: {parcel.weight} kg
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Fee: ${parcel.fee}
+              </p>
               <p className="text-gray-700 dark:text-gray-300">
                 Status:{" "}
                 <span
-                  className={`px-2 py-1 rounded-full text-white font-semibold ${parcel.status === "Delivered"
+                  className={`px-2 py-1 rounded-full text-white font-semibold ${
+                    parcel.status === "Delivered"
                       ? "bg-green-500"
                       : parcel.status === "In Transit"
-                        ? "bg-yellow-500"
-                        : parcel.status === "Pending"
-                          ? "bg-red-500"
-                          : "bg-gray-500"
-                    }`}
+                      ? "bg-yellow-500"
+                      : parcel.status === "Pending"
+                      ? "bg-blue-500"
+                      : "bg-gray-500"
+                  }`}
                 >
                   {parcel.status}
                 </span>
@@ -160,35 +205,31 @@ export default function ViewParcels() {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500 dark:text-gray-400">No parcels found.</p>
+          <p className="text-center text-gray-500 dark:text-gray-400">
+            No parcels found.
+          </p>
         )}
       </div>
 
-      {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-4 flex-wrap">
+     
+      {totalPages  && (
+        <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+            className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded disabled:opacity-50 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
           >
-            Previous
+            Prev
           </button>
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => handlePageChange(i + 1)}
-              className={`px-3 py-1 rounded ${currentPage === i + 1
-                  ? " text-black dark:text-white"
-                  : "text-black dark:text-white"
-                }`}
-            >
-              {i + 1}
-            </button>
-          ))}
+
+          <span className="text-gray-800 dark:text-gray-200 text-sm font-medium">
+            Page {currentPage} of {totalPages}
+          </span>
+
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+            className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded disabled:opacity-50 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
           >
             Next
           </button>

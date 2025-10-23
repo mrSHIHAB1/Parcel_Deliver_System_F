@@ -8,7 +8,7 @@ import { useLoginMutation } from "../../features/auth/authApi";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginMutation] = useLoginMutation();
+  const [loginMutation,{isLoading}] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -75,9 +75,14 @@ export default function Login() {
      
         <button
           type="submit"
-          className="bg-teal-600 hover:bg-teal-700 text-white w-full py-3 rounded-lg font-semibold transition-colors mb-4"
+           disabled={isLoading}
+        className={`${
+            isLoading
+              ? "bg-teal-400 cursor-not-allowed"
+              : "bg-teal-600 hover:bg-teal-700"
+          } text-white w-full py-3 rounded-lg font-semibold transition-all mb-4 flex items-center justify-center`}
         >
-          Login
+         {isLoading ? "Wait" : "Login"}
         </button>
 
         <p className="text-center text-gray-500 dark:text-gray-300 mb-4">or</p>

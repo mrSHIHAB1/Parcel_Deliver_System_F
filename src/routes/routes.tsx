@@ -29,10 +29,10 @@ import ReceiverParcelDetails from "../Pages/Dashboard/reciver/ReciverParcelDetai
 import DeliveryHistory from "../Pages/Dashboard/reciver/DeliveryHistory";
 import SenderParcelDetails from "../Pages/Dashboard/sender/ParcelDetails";
 import ParcelTrackingPage from "../Pages/Tracking/Tracking";
-import FAQ from "../Pages/FAQ";
-import { Features } from "../Pages/Features";
-import { Contact } from "../Pages/Contact";
-import { About } from "../Pages/About";
+import { Contact } from "../Pages/public/Contact";
+import { Features } from "../Pages/public/Features";
+import { About } from "../Pages/public/About";
+import FAQ from "../Pages/public/FAQ";
 
 export const router = createBrowserRouter([
   // Public routes
