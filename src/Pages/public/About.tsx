@@ -5,11 +5,12 @@ import react from "../../assets/Profile.svg"
 
 export  function About() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6">
+    <div className="min-h-screen bg-gray-50  dark:bg-[#0F1F1A] transition-colors duration-300 text-gray-800 dark:text-gray-200 p-6">
       {/* Hero Section */}
-      <section className="text-center py-12">
+     <div className="container mx-auto">
+       <section className="text-center py-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          About ParcelPro
+          About ShipZone
         </h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           We are committed to delivering your parcels safely and efficiently, making your shipping experience seamless and reliable.
@@ -51,7 +52,7 @@ export  function About() {
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:scale-105 transform transition text-center">
             <img src={react} alt="Team Member" className="w-32 h-32 mx-auto rounded-full mb-4" />
             <h3 className="font-semibold text-lg mb-1">Shihab Rahman</h3>
-            <p className="text-gray-600 dark:text-gray-300">CEO & Founder</p>
+            <p className="text-gray-600 dark:text-gray-300">CEO & Developer</p>
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:scale-105 transform transition text-center">
@@ -62,8 +63,8 @@ export  function About() {
 
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:scale-105 transform transition text-center">
             <img src={react} alt="Team Member" className="w-32 h-32 mx-auto rounded-full mb-4" />
-            <h3 className="font-semibold text-lg mb-1">Sara Karim</h3>
-            <p className="text-gray-600 dark:text-gray-300">Operations Manager</p>
+            <h3 className="font-semibold text-lg mb-1">Fahim Montasir</h3>
+            <p className="text-gray-600 dark:text-gray-300">Public Relation</p>
           </div>
         </div>
       </section>
@@ -80,6 +81,7 @@ export  function About() {
           Get Started
         </button>
       </section>
+     </div>
     </div>
   );
 }

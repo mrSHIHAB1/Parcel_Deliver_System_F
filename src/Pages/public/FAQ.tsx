@@ -32,7 +32,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
+    <div className="min-h-screen bg-gray-50  dark:bg-[#0F1F1A] transition-colors duration-300 p-6">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-gray-800 dark:text-gray-200 text-center">
           Frequently Asked Questions

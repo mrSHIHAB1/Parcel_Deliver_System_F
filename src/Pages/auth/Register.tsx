@@ -58,7 +58,7 @@ export default function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-4 dark:bg-gray-900">
+    <div className="flex justify-center items-center min-h-screen p-4 dark:bg-[#0F1F1A] transition-colors duration-300">
       <form
         onSubmit={handleRegister}
         className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md"

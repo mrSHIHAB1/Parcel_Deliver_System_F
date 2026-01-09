@@ -20,7 +20,7 @@ export function ReceiverDashboard() {
   const inTransit = parcels.filter((p) =>
     ["In Transit", "Approved", "Dispatched"].includes(p.status)
   ).length;
-  const pending = parcels.filter((p) => ["Pending", "Awaiting Pickup"].includes(p.status)).length;
+  const pending = parcels.filter((p) => ["Pending,Requested"].includes(p.status)).length;
   const cancelled = parcels.filter((p) => p.status === "Cancelled").length;
 
 
@@ -126,7 +126,7 @@ export function ReceiverDashboard() {
           <option value="Delivered">Delivered</option>
           <option value="In Transit">In Transit</option>
           <option value="Pending">Pending</option>
-          <option value="Awaiting Pickup">Awaiting Pickup</option>
+          <option value="Requested">Requested</option>
           <option value="Cancelled">Cancelled</option>
         </select>
       </div>

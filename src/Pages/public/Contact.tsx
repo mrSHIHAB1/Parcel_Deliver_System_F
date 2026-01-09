@@ -22,7 +22,7 @@ export  function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-50  dark:bg-[#0F1F1A] transition-colors  flex items-center justify-center p-6">
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Contact Info */}
         <div className="flex flex-col justify-center space-y-6">

@@ -28,10 +28,10 @@ function Navbar() {
       : "/";
 
   return (
-    <div>
-     <div className="navbar bg-base-100 dark:bg-neutral text-black dark:text-white shadow-sm ">
+    <div className="mb-16 ">
+     <div className="navbar  bg-[#F3FBF7]  dark:bg-[#0F1F1A] transition-colors duration-300 text-black dark:text-white shadow-sm  fixed top-0 z-50 px-4  ">
  
-        <div className="navbar-start">
+        <div className="navbar-start border-b-amber-950 ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg

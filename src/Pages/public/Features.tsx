@@ -36,9 +36,10 @@ const features = [
 
 export function Features() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6">
+    <div className="min-h-screen  bg-gray-50  dark:bg-[#0F1F1A] transition-colors duration-300 text-gray-800 dark:text-gray-200 p-6">
 
-      <section className="text-center py-12">
+     <div className="container mx-auto">
+       <section className="text-center py-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Features</h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           We provide a top-notch parcel delivery experience with speed, security, and reliability.
@@ -68,6 +69,7 @@ export function Features() {
           Get Started
         </button>
       </section>
+     </div>
     </div>
   );
 }

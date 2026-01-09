@@ -20,13 +20,13 @@ const ParcelTrackingPage = () => {
       <h1 className="text-2xl font-bold mb-4 text-center dark:text-white">
         Track Your Parcel
       </h1>
-
+<p className="text-center text-gray-400">Demo TrackingID: TRK-20250801-527997</p>
       <form onSubmit={handleSearch} className="flex mb-6">
         <input
           type="text"
           value={trackingId}
           onChange={(e) => setTrackingId(e.target.value)}
-          placeholder="Enter Tracking ID (e.g., TRK-20251020-000001)"
+          placeholder="Enter Tracking ID "
           className="flex-1 border rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400 dark:border-white dark:text-white"
         />
         <button
