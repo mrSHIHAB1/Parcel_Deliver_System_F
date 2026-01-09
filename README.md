@@ -1,5 +1,7 @@
-# 📦  Parcel Delivery System
-
+# 📦  ShipZone-A Parcel Delivery System
+---
+##Livelink Frontend: https://parceldeliveryfrontend.vercel.app
+##Livelink Backend: https://parcelbackend-kappa.vercel.app
 ---
 
 ### 🎯 Objective
@@ -45,3 +47,4 @@ Backend:
 ```javascript 
 https://github.com/mrSHIHAB1/Parcel_Deliver_System.git
 ```
+
